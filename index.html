@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>DavestPay.Com Officer</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.11.4/jquery-ui.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <style type="text/css">
+      html {
+        -webkit-user-select: none;
+      }
+
+      .img-wrapper{
+          position: relative;
+          overflow:hidden;
+          height:250px;
+      }
+
+      .img-wrapper img{
+          position: absolute;
+          top:-100%; left:0; right: 0; bottom:-100%;
+          margin: auto;
+          width: 250px;
+      }
+
+      .list-img-wrapper{
+          position: relative;
+          overflow:hidden;
+          height:80px;
+      }
+
+      .list-img-wrapper img{
+          position: absolute;
+          top:-100%; left:0; right: 0; bottom:-100%;
+          /*margin: auto;*/
+          width: 80px;
+      }
+
+      .ui-autocomplete {
+        position: relative;
+        z-index: 10000;
+      }
+
+      .ui-widget {
+          font-size: 1.2em;
+      }
+
+      .chart-ul {
+        margin: 0;
+      }
+      li.chart {
+        margin-bottom: -5px;
+      }
+
+      .no-top-margin {
+        margin-top: 0;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/Chart.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+        <p><a href="budget.html" class="button close-panel">Budget</a></p>
+        <p><a href="spending.html" class="button close-panel">Spending</a></p>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner" style="background-color:#f08519;">
+            <!-- We have home navbar without left link-->
+            <div class="left">
+              <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars" style="background-image: url('img/menu-icon.png');"></i></a>
+            </div>
+            <div class="center sliding" style="color:white; font-weight:bold;">DAVESTPAY.COM OFFICER</div>
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Page, data-page contains page name-->
+          <div data-page="index" class="page">
+            <div style="display:none;" id="page-indicator">index</div>
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <center>
+                <div class="content-block-title">This Month Budget</div>
+                <div class="list-block">
+                  <ul>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-input">
+                            <input style="text-align:center; font-size:27px;" type="tel" placeholder="0" onkeypress="return isNumberKey(event);" onkeyup="this.value=numberWithCommas(this.value);" id="this_month_budget">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="content-block-title">Remaining This Month</div>
+                <span style="font-size:27px; font-weight:bold;" id="thisMonthBudgetRemaining">0</span>
+                <div class="content-block-title">Today Budget</div>
+                <span style="font-size:27px; font-weight:bold;" id="todayBudget">0</span>
+                <div class="content-block-title">Remaining Today</div>
+                <span style="font-size:27px; font-weight:bold;" id="todayRemaining">0</span>
+                <div class="content-block-title">Today Spendings</div>
+                <div style="font-size:27px; font-weight:bold;" id="todaySpendingTotal"></div>
+              </center>
+                <p style="margin-left:1em; margin-right:1em;"><a href="todaySpendingAdd.html" class="button link button-fill color-gray" style="background-color:blue;">Add Spending</a></p>
+                <div id="todaySpendingListContainer"></div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="plugins/jquery-ui-1.11.4/jquery-ui.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
+</html>
