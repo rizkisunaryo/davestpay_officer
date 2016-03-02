@@ -19,19 +19,19 @@ var mainView = myApp.addView('.view-main', {
 });
 
 // database
-if (window.openDatabase) {
-  var mydb = openDatabase("budget_me", "0.1", "DavestPay Officer DB", 1024 * 1024 * 50);
+// if (window.openDatabase) {
+//   var mydb = openDatabase("budget_me", "0.1", "DavestPay Officer DB", 1024 * 1024 * 50);
 
-  mydb.transaction(function (t) {
-    t.executeSql("CREATE TABLE IF NOT EXISTS spending (id INTEGER PRIMARY KEY ASC, name, brand, location, descr, spent, spending_date, is_del, upd_date)");
-    t.executeSql("CREATE TABLE IF NOT EXISTS budget (month_year PRIMARY KEY, budget, is_del, upd_date)");
-    t.executeSql("CREATE TABLE IF NOT EXISTS name (name PRIMARY KEY)");
-    t.executeSql("CREATE TABLE IF NOT EXISTS brand (name PRIMARY KEY)");
-    t.executeSql("CREATE TABLE IF NOT EXISTS location (name PRIMARY KEY)");
-  });
-} else {
-  myApp.alert("Not supported on your phone.");
-}
+//   mydb.transaction(function (t) {
+//     t.executeSql("CREATE TABLE IF NOT EXISTS spending (id INTEGER PRIMARY KEY ASC, name, brand, location, descr, spent, spending_date, is_del, upd_date)");
+//     t.executeSql("CREATE TABLE IF NOT EXISTS budget (month_year PRIMARY KEY, budget, is_del, upd_date)");
+//     t.executeSql("CREATE TABLE IF NOT EXISTS name (name PRIMARY KEY)");
+//     t.executeSql("CREATE TABLE IF NOT EXISTS brand (name PRIMARY KEY)");
+//     t.executeSql("CREATE TABLE IF NOT EXISTS location (name PRIMARY KEY)");
+//   });
+// } else {
+//   myApp.alert("Not supported on your phone.");
+// }
 
 // enable BACK button
 $$('.panel-left').on('opened', function () {

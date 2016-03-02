@@ -16,52 +16,25 @@
       html {
         -webkit-user-select: none;
       }
-
-      .img-wrapper{
-          position: relative;
-          overflow:hidden;
-          height:250px;
+      div.item-container {
+        border-color: lightblue;
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 1px;
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-right: 1%;
+        padding: 5px;
+        width: 19%;
       }
-
-      .img-wrapper img{
-          position: absolute;
-          top:-100%; left:0; right: 0; bottom:-100%;
-          margin: auto;
-          width: 250px;
-      }
-
-      .list-img-wrapper{
-          position: relative;
-          overflow:hidden;
-          height:80px;
-      }
-
-      .list-img-wrapper img{
-          position: absolute;
-          top:-100%; left:0; right: 0; bottom:-100%;
-          /*margin: auto;*/
-          width: 80px;
-      }
-
-      .ui-autocomplete {
+      div.cropped-image-container {
+        border-radius: 100px;
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
         position: relative;
-        z-index: 10000;
-      }
-
-      .ui-widget {
-          font-size: 1.2em;
-      }
-
-      .chart-ul {
-        margin: 0;
-      }
-      li.chart {
-        margin-bottom: -5px;
-      }
-
-      .no-top-margin {
-        margin-top: 0;
-      }
+        margin: 0 auto;
+      }      
     </style>
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script>
@@ -73,10 +46,12 @@
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
     <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-reveal">
+    <div class="panel panel-left panel-reveal" style="background-color:#424a5d;">
       <div class="content-block">
-        <p><a href="budget.html" class="button close-panel">Budget</a></p>
-        <p><a href="spending.html" class="button close-panel">Spending</a></p>
+        <div class="cropped-image-container">
+          <img class="cropped-image" style="max-width:100%;" src="img/pic-1.jpg" />
+        </div>
+        <div style="text-align: center; color: white; font-weight: bold; margin-top: 10px;">Rizki Sunaryo</div>
       </div>
     </div>
     <!-- Views-->
@@ -100,33 +75,50 @@
             <div style="display:none;" id="page-indicator">index</div>
             <!-- Scrollable page content-->
             <div class="page-content">
-              <center>
-                <div class="content-block-title">This Month Budget</div>
-                <div class="list-block">
+                       
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="login-screen modal-in">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content" style="background-color:#f9b765;">
+            <div class="login-screen-title" style="padding:5px;">
+              <img src="img/cam1.png" />
+              <img src="img/logox.png" style="max-width:95%;"/>
+            </div>
+            <form>              
+              <div style="padding:10px; padding-top:0;">
+                <div class="list-block" style="background-color: white; padding: 10px; border-radius: 15px;">
                   <ul>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-input">
-                            <input style="text-align:center; font-size:27px;" type="tel" placeholder="0" onkeypress="return isNumberKey(event);" onkeyup="this.value=numberWithCommas(this.value);" id="this_month_budget">
-                          </div>
+                    <li class="item-content">
+                      <div class="item-inner">
+                        <!-- <div class="item-title label">ID</div> -->
+                        <div class="item-input">
+                          <input type="text" name="username" placeholder="ID Anda">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="item-content">
+                      <div class="item-inner">
+                        <!-- <div class="item-title label">Password</div> -->
+                        <div class="item-input">
+                          <input type="password" name="password" placeholder="Password Anda">
                         </div>
                       </div>
                     </li>
                   </ul>
+                  <ul>
+                    <li><p><a href="#" class="button button-fill button-big color-yellow close-login-screen" style="background-color:#ffa300; margin:10px;">Masuk</a></p></li>
+                  </ul>                
+                </div>              
+                <div class="list-block-label">
+                  <p style="color:white;">Copyright © DavestPay.com 2016 All rights Reserved</p>
                 </div>
-                <div class="content-block-title">Remaining This Month</div>
-                <span style="font-size:27px; font-weight:bold;" id="thisMonthBudgetRemaining">0</span>
-                <div class="content-block-title">Today Budget</div>
-                <span style="font-size:27px; font-weight:bold;" id="todayBudget">0</span>
-                <div class="content-block-title">Remaining Today</div>
-                <span style="font-size:27px; font-weight:bold;" id="todayRemaining">0</span>
-                <div class="content-block-title">Today Spendings</div>
-                <div style="font-size:27px; font-weight:bold;" id="todaySpendingTotal"></div>
-              </center>
-                <p style="margin-left:1em; margin-right:1em;"><a href="todaySpendingAdd.html" class="button link button-fill color-gray" style="background-color:blue;">Add Spending</a></p>
-                <div id="todaySpendingListContainer"></div>              
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
