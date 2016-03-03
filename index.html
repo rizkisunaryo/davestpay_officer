@@ -70,6 +70,17 @@
         vertical-align: middle; 
         display: table-cell;
       }
+      div.panel-submenu-container {
+        margin-bottom: 25px;
+        display: none;
+      }
+      div.panel-submenu-item-container {
+        margin-left: 30px;
+        margin-top: 10px;
+      }
+      a.panel-menu-trigger {
+        display: none;
+      }
     </style>
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script>
@@ -88,7 +99,8 @@
         </div>
         <div style="text-align: center; color: white; font-weight: bold; margin-top: 10px;">Rizki Sunaryo</div>
         <div class="panel-menu-container">
-          <a href="#" class="panel-menu">
+          <a href="index.html" class="panel-menu-trigger panel-menu-trigger-index">Dashboard TRIGGER</a>
+          <a href="#" class="panel-menu panel-menu-link" data-page="index">
             <div class="cropped-image-container-tiny">
               <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-1.jpg" />
             </div>
@@ -96,15 +108,81 @@
           </a>
         </div>
         <div class="panel-menu-container">
-          <a href="#" class="panel-menu">
+          <a href="registrasi_toko.html" class="panel-menu-trigger panel-menu-trigger-registrasi_toko">Registrasi Toko TRIGGER</a>
+          <a href="#" class="panel-menu panel-menu-link" data-page="registrasi_toko">
             <div class="cropped-image-container-tiny">
               <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
             </div>
             <div class="panel-menu-text-container"><span class="panel-menu-text">Registrasi Toko</span></div>
           </a>
         </div>
-        <div class="panel-menu-container"><a href="#" class="panel-menu">Check-in</a></div>
-
+        <div class="panel-menu-container">
+          <a href="#" class="panel-menu">
+            <div class="cropped-image-container-tiny">
+              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+            </div>
+            <div class="panel-menu-text-container"><span class="panel-menu-text">Check-In</span></div>
+          </a>
+        </div>
+        <div class="panel-menu-container">
+          <a href="#" class="panel-menu has-submenu" data-submenu="aktivitas-anda">
+            <div class="cropped-image-container-tiny">
+              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+            </div>
+            <div class="panel-menu-text-container"><span class="panel-menu-text">Aktivitas Anda</span></div>
+          </a>
+        </div>
+        <div class="panel-submenu-container submenu-container-aktivitas-anda">
+          <div class="panel-submenu-item-container">
+            <a href="#" class="panel-menu">Valid</a>
+          </div>
+          <div class="panel-submenu-item-container">
+            <a href="#" class="panel-menu">Tidak Valid</a>
+          </div>
+          <div class="panel-submenu-item-container">
+            <a href="#" class="panel-menu">Belum Tervalidasi</a>
+          </div>
+        </div>
+        <div class="panel-menu-container">
+          <a href="#" class="panel-menu has-submenu" data-submenu="toko">
+            <div class="cropped-image-container-tiny">
+              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+            </div>
+            <div class="panel-menu-text-container"><span class="panel-menu-text">Toko</span></div>
+          </a>
+        </div>
+        <div class="panel-submenu-container submenu-container-toko">
+          <div class="panel-submenu-item-container">
+            <a href="#" class="panel-menu">Toko Aktif</a>
+          </div>
+          <div class="panel-submenu-item-container">
+            <a href="#" class="panel-menu">Toko Non-Aktif</a>
+          </div>
+        </div>
+        <div class="panel-menu-container">
+          <a href="#" class="panel-menu">
+            <div class="cropped-image-container-tiny">
+              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+            </div>
+            <div class="panel-menu-text-container"><span class="panel-menu-text">History Checklist</span></div>
+          </a>
+        </div>
+        <div class="panel-menu-container">
+          <a href="#" class="panel-menu">
+            <div class="cropped-image-container-tiny">
+              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+            </div>
+            <div class="panel-menu-text-container"><span class="panel-menu-text">Ubah Password</span></div>
+          </a>
+        </div>
+        <div class="panel-menu-container">
+          <a href="#" class="panel-menu">
+            <div class="cropped-image-container-tiny">
+              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+            </div>
+            <div class="panel-menu-text-container"><span class="panel-menu-text">Log Out</span></div>
+          </a>
+        </div>
       </div>
     </div>
     <!-- Views-->
@@ -181,5 +259,21 @@
     <script type="text/javascript" src="plugins/jquery-ui-1.11.4/jquery-ui.js"></script>
     <!-- Path to your app js-->
     <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript">
+      $('.has-submenu').click(function() {
+        var theSubmenu = $('.submenu-container-'+$(this).data('submenu'));
+        var needToOpen = 0;
+        if (theSubmenu.css('display')=='none') needToOpen = 1;
+        $('.panel-submenu-container').hide("fast");
+        if (needToOpen==1) theSubmenu.show("fast");
+      });
+      $('.panel-menu-link').click(function() {
+        myApp.closePanel();
+        if ($(this).data('page')==$$('.view-main').data('page')) return;
+
+        var element = '.panel-menu-trigger-'+$(this).data('page');
+        $$(element).trigger('click');
+      });
+    </script>
   </body>
 </html>
