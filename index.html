@@ -117,7 +117,8 @@
           </a>
         </div>
         <div class="panel-menu-container">
-          <a href="#" class="panel-menu">
+          <a href="checkin.html" class="panel-menu-trigger panel-menu-trigger-checkin">Chek-In TRIGGER</a>
+          <a href="#" class="panel-menu panel-menu-link" data-page="checkin">
             <div class="cropped-image-container-tiny">
               <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
             </div>
@@ -267,7 +268,10 @@
         $('.panel-submenu-container').hide("fast");
         if (needToOpen==1) theSubmenu.show("fast");
       });
+
       $('.panel-menu-link').click(function() {
+        console.log($(this).data('page'));
+        console.log($$('.view-main').data('page'));
         myApp.closePanel();
         if ($(this).data('page')==$$('.view-main').data('page')) return;
 
