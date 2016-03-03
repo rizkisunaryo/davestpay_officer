@@ -135,13 +135,16 @@
         </div>
         <div class="panel-submenu-container submenu-container-aktivitas-anda">
           <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu">Valid</a>
+            <a href="aktivitas_anda_valid.html" class="panel-menu-trigger panel-menu-trigger-aktivitas_anda_valid">Aktivitas Anda Valid TRIGGER</a>
+            <a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_valid">Valid</a>
           </div>
           <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu">Tidak Valid</a>
+            <a href="aktivitas_anda_tidak_valid.html" class="panel-menu-trigger panel-menu-trigger-aktivitas_anda_tidak_valid">Aktivitas Anda Tidak Valid TRIGGER</a>
+            <a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_tidak_valid">Tidak Valid</a>
           </div>
           <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu">Belum Tervalidasi</a>
+            <a href="aktivitas_anda_belum_tervalidasi.html" class="panel-menu-trigger panel-menu-trigger-aktivitas_anda_belum_tervalidasi">Aktivitas Anda Belum Tervalidasi TRIGGER</a>
+            <a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_belum_tervalidasi">Belum Tervalidasi</a>
           </div>
         </div>
         <div class="panel-menu-container">
@@ -154,14 +157,17 @@
         </div>
         <div class="panel-submenu-container submenu-container-toko">
           <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu">Toko Aktif</a>
+            <a href="toko_aktif.html" class="panel-menu-trigger panel-menu-trigger-toko_aktif">Toko Aktif TRIGGER</a>
+            <a href="#" class="panel-menu panel-menu-link" data-page="toko_aktif">Toko Aktif</a>
           </div>
           <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu">Toko Non-Aktif</a>
+            <a href="toko_non_aktif.html" class="panel-menu-trigger panel-menu-trigger-toko_non_aktif">Toko Non-Aktif TRIGGER</a>
+            <a href="#" class="panel-menu panel-menu-link" data-page="toko_non_aktif">Toko Non-Aktif</a>
           </div>
         </div>
         <div class="panel-menu-container">
-          <a href="#" class="panel-menu">
+          <a href="history_checklist.html" class="panel-menu-trigger panel-menu-trigger-history_checklist">History Checklist TRIGGER</a>
+          <a href="#" class="panel-menu panel-menu-link" data-page="history_checklist">
             <div class="cropped-image-container-tiny">
               <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
             </div>
@@ -169,7 +175,8 @@
           </a>
         </div>
         <div class="panel-menu-container">
-          <a href="#" class="panel-menu">
+          <a href="ubah_password.html" class="panel-menu-trigger panel-menu-trigger-ubah_password">Ubah Password TRIGGER</a>
+          <a href="#" class="panel-menu panel-menu-link" data-page="ubah_password">
             <div class="cropped-image-container-tiny">
               <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
             </div>
@@ -177,7 +184,7 @@
           </a>
         </div>
         <div class="panel-menu-container">
-          <a href="#" class="panel-menu">
+          <a href="#" class="panel-menu log-out-link">
             <div class="cropped-image-container-tiny">
               <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
             </div>
@@ -270,13 +277,15 @@
       });
 
       $('.panel-menu-link').click(function() {
-        console.log($(this).data('page'));
-        console.log($$('.view-main').data('page'));
         myApp.closePanel();
         if ($(this).data('page')==$$('.view-main').data('page')) return;
 
         var element = '.panel-menu-trigger-'+$(this).data('page');
         $$(element).trigger('click');
+      });
+
+      $('.log-out-link').click(function() {
+        myApp.loginScreen();
       });
     </script>
   </body>
