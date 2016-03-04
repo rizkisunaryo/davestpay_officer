@@ -423,25 +423,57 @@ function loadIndex() {
     }
     loadIndex();
   });
-loadIndex();
+// loadIndex();
 
 myApp.onPageInit('index', function (page) {
   // this month budget on focus out
-  $('#this_month_budget').focusout(function() {
-    if (mydb) {
-      var fDate = new Date;
-      var fDateMY = getFormattedDateYM(fDate);
-      var upd_date = getFormattedDateYMDHMS(fDate);
-      mydb.transaction(function (t) {
-        t.executeSql("UPDATE budget SET budget=?, upd_date=? WHERE month_year=?", [document.getElementById('this_month_budget').value, upd_date, fDateMY]); 
-      });
-    } else {
-      myApp.alert("Not supported on your phone.");
-    }
-    loadIndex();
-  });
+  // $('#this_month_budget').focusout(function() {
+  //   if (mydb) {
+  //     var fDate = new Date;
+  //     var fDateMY = getFormattedDateYM(fDate);
+  //     var upd_date = getFormattedDateYMDHMS(fDate);
+  //     mydb.transaction(function (t) {
+  //       t.executeSql("UPDATE budget SET budget=?, upd_date=? WHERE month_year=?", [document.getElementById('this_month_budget').value, upd_date, fDateMY]); 
+  //     });
+  //   } else {
+  //     myApp.alert("Not supported on your phone.");
+  //   }
+  //   loadIndex();
+  // });
 
-  loadIndex();
+  // loadIndex();
+});
+
+myApp.onPageInit('checkin', function (page) {
+    console.log('test');
+        var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $('#chekin___toko').autocomplete({
+      delay: 0,
+      source: availableTags
+    });
 });
 
 myApp.onPageInit('todaySpendingAdd', function (page) {
