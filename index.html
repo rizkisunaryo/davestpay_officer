@@ -1,326 +1,394 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>DavestPay.Com Officer</title>
-    <!-- Path to Framework7 Library CSS-->
-    <link rel="stylesheet" href="css/framework7.ios.min.css">
-    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
-    <link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.11.4/jquery-ui.css">
-    <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="css/my-app.css">
-    <style type="text/css">
-      html {
-        -webkit-user-select: none;
-      }
-      .ui-autocomplete {
-        position: relative;
-        z-index: 10000;
-      }
-      .ui-widget {
-          font-size: 1.2em;
-      }
-      div.cropped-image-container {
-        border-radius: 100px;
-        width: 100px;
-        height: 100px;
-        overflow: hidden;
-        position: relative;
-        margin: 0 auto;
-      }
-      .cropped-image {
-        position: absolute;
-        left: -1000%;
-        right: -1000%;
-        top: -1000%;
-        bottom: -1000%;
-        margin: auto;
-        min-height: 100%;
-        min-width: 100%;
-      }
-      div.cropped-image-container-tiny {
-        border-radius: 20px;
-        width: 20px;
-        height: 20px;
-        overflow: hidden;
-        position: relative;
-        display: inline-block;
-        margin-right: 5px;
-      }
-      .cropped-image-tiny {
-        position: absolute;
-        left: -1000%;
-        right: -1000%;
-        top: -1000%;
-        bottom: -1000%;
-        margin: auto;
-        min-height: 100%;
-        min-width: 100%;
-      }
-      div.panel-menu-container {
-        margin-top: 20px;
-      }
-      a.panel-menu {
-        width: 100%; 
-        display: block; 
-        color: #98a2aa;
-      }
-      div.panel-menu-text-container {
-        display: inline-block; 
-        height: 20px; 
-        line-height: 20px;
-      }
-      span.panel-menu-text {
-        vertical-align: middle; 
-        display: table-cell;
-      }
-      div.panel-submenu-container {
-        margin-bottom: 25px;
-        display: none;
-      }
-      div.panel-submenu-item-container {
-        margin-left: 30px;
-        margin-top: 10px;
-      }
-      a.panel-menu-trigger {
-        display: none;
-      }
-    </style>
-    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="js/Chart.js"></script>
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-  </head>
-  <body>
-    <!-- Status bar overlay for fullscreen mode-->
-    <div class="statusbar-overlay"></div>
-    <!-- Panels overlay-->
-    <div class="panel-overlay"></div>
-    <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-reveal" style="background-color:#424a5d;">
-      <div class="content-block">
-        <div class="cropped-image-container">
-          <img class="cropped-image" style="max-width:100%;" src="img/pic-1.jpg" />
-        </div>
-        <div style="text-align: center; color: white; font-weight: bold; margin-top: 10px;">Rizki Sunaryo</div>
-        <div class="panel-menu-container">
-          <a href="#" class="panel-menu panel-menu-link" data-page="index">
-            <div class="cropped-image-container-tiny">
-              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-1.jpg" />
-            </div>
-            <div class="panel-menu-text-container"><span class="panel-menu-text">Dashboard</span></div>
-          </a>
-        </div>
-        <div class="panel-menu-container">
-          <a href="#" class="panel-menu panel-menu-link" data-page="registrasi_toko">
-            <div class="cropped-image-container-tiny">
-              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
-            </div>
-            <div class="panel-menu-text-container"><span class="panel-menu-text">Registrasi Toko</span></div>
-          </a>
-        </div>
-        <div class="panel-menu-container">
-          <a href="#" class="panel-menu panel-menu-link" data-page="checkin">
-            <div class="cropped-image-container-tiny">
-              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
-            </div>
-            <div class="panel-menu-text-container"><span class="panel-menu-text">Check-In</span></div>
-          </a>
-        </div>
-        <div class="panel-menu-container">
-          <a href="#" class="panel-menu has-submenu" data-submenu="aktivitas-anda">
-            <div class="cropped-image-container-tiny">
-              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
-            </div>
-            <div class="panel-menu-text-container"><span class="panel-menu-text">Aktivitas Anda</span></div>
-          </a>
-        </div>
-        <div class="panel-submenu-container submenu-container-aktivitas-anda">
-          <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_valid">Valid</a>
-          </div>
-          <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_tidak_valid">Tidak Valid</a>
-          </div>
-          <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_belum_tervalidasi">Belum Tervalidasi</a>
-          </div>
-        </div>
-        <div class="panel-menu-container">
-          <a href="#" class="panel-menu has-submenu" data-submenu="toko">
-            <div class="cropped-image-container-tiny">
-              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
-            </div>
-            <div class="panel-menu-text-container"><span class="panel-menu-text">Toko</span></div>
-          </a>
-        </div>
-        <div class="panel-submenu-container submenu-container-toko">
-          <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu panel-menu-link" data-page="toko_aktif">Toko Aktif</a>
-          </div>
-          <div class="panel-submenu-item-container">
-            <a href="#" class="panel-menu panel-menu-link" data-page="toko_non_aktif">Toko Non-Aktif</a>
-          </div>
-        </div>
-        <div class="panel-menu-container">
-          <a href="#" class="panel-menu panel-menu-link" data-page="history_checklist">
-            <div class="cropped-image-container-tiny">
-              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
-            </div>
-            <div class="panel-menu-text-container"><span class="panel-menu-text">History Checklist</span></div>
-          </a>
-        </div>
-        <div class="panel-menu-container">
-          <a href="#" class="panel-menu panel-menu-link" data-page="ubah_password">
-            <div class="cropped-image-container-tiny">
-              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
-            </div>
-            <div class="panel-menu-text-container"><span class="panel-menu-text">Ubah Password</span></div>
-          </a>
-        </div>
-        <div class="panel-menu-container">
-          <a href="#" class="panel-menu log-out-link">
-            <div class="cropped-image-container-tiny">
-              <img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
-            </div>
-            <div class="panel-menu-text-container"><span class="panel-menu-text">Log Out</span></div>
-          </a>
-        </div>
-      </div>
-    </div>
-    <!-- Views-->
-    <div class="views">
-      <!-- Your main view, should have "view-main" class-->
-      <div class="view view-main">
-        <!-- Top Navbar-->
-        <div class="navbar">
-          <div class="navbar-inner" style="background-color:#f08519;">
-            <!-- We have home navbar without left link-->
-            <div class="left">
-              <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars" style="background-image: url('img/menu-icon.png');"></i></a>
-            </div>
-            <div class="center sliding" style="color:white; font-weight:bold;">DAVESTPAY.COM OFFICER</div>
-          </div>
-        </div>
-        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages navbar-through toolbar-through">
-          <!-- Page, data-page contains page name-->
-          <div data-page="index" class="page">
-            <div style="display:none;" id="page-indicator">index</div>
-            <!-- Scrollable page content-->
-            <div class="page-content">
-                       
-            </div>
-          </div>
-        </div>
-        <div class="toolbar">
-          <div class="toolbar-inner" style="background-color:#68dff0">
-            <!-- Toolbar links -->
-            <!-- <a href="#" class="link">Link 1</a>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>DavestPay.Com Officer</title>
+	<!-- Path to Framework7 Library CSS-->
+	<link rel="stylesheet" href="css/framework7.ios.min.css">
+	<link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.11.4/jquery-ui.css">
+	<!-- Path to your custom app styles-->
+	<link rel="stylesheet" href="css/my-app.css">
+	<style type="text/css">
+		html {
+			-webkit-user-select: none;
+		}
+		
+		.ui-autocomplete {
+			position: relative;
+			z-index: 10000;
+		}
+		
+		.ui-widget {
+			font-size: 1.2em;
+		}
+		
+		div.cropped-image-container {
+			border-radius: 100px;
+			width: 100px;
+			height: 100px;
+			overflow: hidden;
+			position: relative;
+			margin: 0 auto;
+		}
+		
+		.cropped-image {
+			position: absolute;
+			left: -1000%;
+			right: -1000%;
+			top: -1000%;
+			bottom: -1000%;
+			margin: auto;
+			min-height: 100%;
+			min-width: 100%;
+		}
+		
+		div.cropped-image-container-tiny {
+			border-radius: 20px;
+			width: 20px;
+			height: 20px;
+			overflow: hidden;
+			position: relative;
+			display: inline-block;
+			margin-right: 5px;
+		}
+		
+		.cropped-image-tiny {
+			position: absolute;
+			left: -1000%;
+			right: -1000%;
+			top: -1000%;
+			bottom: -1000%;
+			margin: auto;
+			min-height: 100%;
+			min-width: 100%;
+		}
+		
+		div.panel-menu-container {
+			margin-top: 20px;
+		}
+		
+		a.panel-menu {
+			width: 100%;
+			display: block;
+			color: #98a2aa;
+		}
+		
+		div.panel-menu-text-container {
+			display: inline-block;
+			height: 20px;
+			line-height: 20px;
+		}
+		
+		span.panel-menu-text {
+			vertical-align: middle;
+			display: table-cell;
+		}
+		
+		div.panel-submenu-container {
+			margin-bottom: 25px;
+			display: none;
+		}
+		
+		div.panel-submenu-item-container {
+			margin-left: 30px;
+			margin-top: 10px;
+		}
+		
+		a.panel-menu-trigger {
+			display: none;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/Chart.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+</head>
+
+<body>
+	<!-- Status bar overlay for fullscreen mode-->
+	<div class="statusbar-overlay"></div>
+	<!-- Panels overlay-->
+	<div class="panel-overlay"></div>
+	<!-- Left panel with reveal effect-->
+	<div class="panel panel-left panel-reveal" style="background-color:#424a5d;">
+		<div class="content-block">
+			<div class="cropped-image-container">
+				<img class="cropped-image" style="max-width:100%;" src="img/pic-1.jpg" />
+			</div>
+			<div style="text-align: center; color: white; font-weight: bold; margin-top: 10px;">Rizki Sunaryo</div>
+			<div class="panel-menu-container">
+				<a href="#" class="panel-menu panel-menu-link" data-page="index">
+					<div class="cropped-image-container-tiny">
+						<img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-1.jpg" />
+					</div>
+					<div class="panel-menu-text-container"><span class="panel-menu-text">Dashboard</span></div>
+				</a>
+			</div>
+			<div class="panel-menu-container">
+				<a href="#" class="panel-menu panel-menu-link" data-page="registrasi_toko">
+					<div class="cropped-image-container-tiny">
+						<img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+					</div>
+					<div class="panel-menu-text-container"><span class="panel-menu-text">Registrasi Toko</span></div>
+				</a>
+			</div>
+			<div class="panel-menu-container">
+				<a href="#" class="panel-menu panel-menu-link" data-page="checkin">
+					<div class="cropped-image-container-tiny">
+						<img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+					</div>
+					<div class="panel-menu-text-container"><span class="panel-menu-text">Check-In</span></div>
+				</a>
+			</div>
+			<div class="panel-menu-container">
+				<a href="#" class="panel-menu has-submenu" data-submenu="aktivitas-anda">
+					<div class="cropped-image-container-tiny">
+						<img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+					</div>
+					<div class="panel-menu-text-container"><span class="panel-menu-text">Aktivitas Anda</span></div>
+				</a>
+			</div>
+			<div class="panel-submenu-container submenu-container-aktivitas-anda">
+				<div class="panel-submenu-item-container">
+					<a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_valid">Valid</a>
+				</div>
+				<div class="panel-submenu-item-container">
+					<a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_tidak_valid">Tidak Valid</a>
+				</div>
+				<div class="panel-submenu-item-container">
+					<a href="#" class="panel-menu panel-menu-link" data-page="aktivitas_anda_belum_tervalidasi">Belum Tervalidasi</a>
+				</div>
+			</div>
+			<div class="panel-menu-container">
+				<a href="#" class="panel-menu has-submenu" data-submenu="toko">
+					<div class="cropped-image-container-tiny">
+						<img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+					</div>
+					<div class="panel-menu-text-container"><span class="panel-menu-text">Toko</span></div>
+				</a>
+			</div>
+			<div class="panel-submenu-container submenu-container-toko">
+				<div class="panel-submenu-item-container">
+					<a href="#" class="panel-menu panel-menu-link" data-page="toko_aktif">Toko Aktif</a>
+				</div>
+				<div class="panel-submenu-item-container">
+					<a href="#" class="panel-menu panel-menu-link" data-page="toko_non_aktif">Toko Non-Aktif</a>
+				</div>
+			</div>
+			<div class="panel-menu-container">
+				<a href="#" class="panel-menu panel-menu-link" data-page="history_checklist">
+					<div class="cropped-image-container-tiny">
+						<img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+					</div>
+					<div class="panel-menu-text-container"><span class="panel-menu-text">History Checklist</span></div>
+				</a>
+			</div>
+			<div class="panel-menu-container">
+				<a href="#" class="panel-menu panel-menu-link" data-page="ubah_password">
+					<div class="cropped-image-container-tiny">
+						<img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+					</div>
+					<div class="panel-menu-text-container"><span class="panel-menu-text">Ubah Password</span></div>
+				</a>
+			</div>
+			<div class="panel-menu-container">
+				<a href="#" class="panel-menu log-out-link">
+					<div class="cropped-image-container-tiny">
+						<img class="cropped-image-tiny" style="max-width:100%;" src="img/pic-2.jpg" />
+					</div>
+					<div class="panel-menu-text-container"><span class="panel-menu-text">Log Out</span></div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- Views-->
+	<div class="views">
+		<!-- Your main view, should have "view-main" class-->
+		<div class="view view-main">
+			<!-- Top Navbar-->
+			<div class="navbar">
+				<div class="navbar-inner" style="background-color:#f08519;">
+					<!-- We have home navbar without left link-->
+					<div class="left">
+						<a href="#" class="link icon-only open-panel"> <i class="icon icon-bars" style="background-image: url('img/menu-icon.png');"></i></a>
+					</div>
+					<div class="center sliding" style="color:white; font-weight:bold;">DAVESTPAY.COM OFFICER</div>
+				</div>
+			</div>
+			<!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+			<div class="pages navbar-through toolbar-through">
+				<!-- Page, data-page contains page name-->
+				<div data-page="index" class="page">
+					<div style="display:none;" id="page-indicator">index</div>
+					<!-- Scrollable page content-->
+					<div class="page-content">
+
+					</div>
+				</div>
+			</div>
+			<div class="toolbar">
+				<div class="toolbar-inner" style="background-color:#68dff0">
+					<!-- Toolbar links -->
+					<!-- <a href="#" class="link">Link 1</a>
             <a href="#" class="link">Link 2</a> -->
-            <div style="color:white; font-weight:bold; width:100%; text-align:center; ">2016 - DavestPay.Com</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="login-screen modal-in">
-      <div class="view">
-        <div class="page">
-          <div class="page-content login-screen-content" style="background-color:#f9b765;">
-            <div class="login-screen-title" style="padding:5px;">
-              <img src="img/cam1.png" />
-              <img src="img/logox.png" style="max-width:95%;"/>
-            </div>
-            <form>              
-              <div style="padding:10px; padding-top:0;">
-                <div class="list-block" style="background-color: white; padding: 10px; border-radius: 15px;">
-                  <ul>
-                    <li class="item-content">
-                      <div class="item-inner">
-                        <!-- <div class="item-title label">ID</div> -->
-                        <div class="item-input">
-                          <input type="text" name="username" placeholder="ID Anda">
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content">
-                      <div class="item-inner">
-                        <!-- <div class="item-title label">Password</div> -->
-                        <div class="item-input">
-                          <input type="password" name="password" placeholder="Password Anda">
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li><p><a href="#" class="button button-fill button-big color-yellow close-login-screen" style="background-color:#ffa300; margin:10px;">Masuk</a></p></li>
-                  </ul>                
-                </div>              
-                <div class="list-block-label">
-                  <p style="color:white;">Copyright © DavestPay.com 2016 All rights Reserved</p>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Path to Framework7 Library JS-->
-    <script type="text/javascript" src="js/framework7.min.js"></script>
-    <script type="text/javascript" src="plugins/jquery-ui-1.11.4/jquery-ui.js"></script>
-    <!-- Path to your app js-->
-    <script type="text/javascript" src="js/my-app.js"></script>
-    <script type="text/javascript">
-      $('.has-submenu').click(function() {
-        var theSubmenu = $('.submenu-container-'+$(this).data('submenu'));
-        var needToOpen = 0;
-        if (theSubmenu.css('display')=='none') needToOpen = 1;
-        $('.panel-submenu-container').hide("fast");
-        if (needToOpen==1) theSubmenu.show("fast");
-      });
+					<div style="color:white; font-weight:bold; width:100%; text-align:center; ">2016 - DavestPay.Com</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="login-screen modal-in">
+		<div class="view">
+			<div class="page">
+				<div class="page-content login-screen-content" style="background-color:#f9b765;">
+					<div class="login-screen-title" style="padding:5px;">
+						<img src="img/cam1.png" />
+						<img src="img/logox.png" style="max-width:95%;" />
+					</div>
+					<form>
+						<div style="padding:10px; padding-top:0;">
+							<div class="list-block" style="background-color: white; padding: 10px; border-radius: 15px;">
+								<ul>
+									<li class="item-content">
+										<div class="item-inner">
+											<!-- <div class="item-title label">ID</div> -->
+											<div class="item-input">
+												<input type="text" name="username" placeholder="ID Anda">
+											</div>
+										</div>
+									</li>
+									<li class="item-content">
+										<div class="item-inner">
+											<!-- <div class="item-title label">Password</div> -->
+											<div class="item-input">
+												<input type="password" name="password" placeholder="Password Anda">
+											</div>
+										</div>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<p><a href="#" class="button button-fill button-big color-yellow close-login-screen" style="background-color:#ffa300; margin:10px;">Masuk</a></p>
+									</li>
+								</ul>
+							</div>
+							<div class="list-block-label">
+								<p style="color:white;">Copyright © DavestPay.com 2016 All rights Reserved</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Path to Framework7 Library JS-->
+	<script type="text/javascript" src="js/framework7.min.js"></script>
+	<script type="text/javascript" src="plugins/jquery-ui-1.11.4/jquery-ui.js"></script>
+	<!-- Path to your app js-->
+	<script type="text/javascript" src="js/my-app.js"></script>
+	<script type="text/javascript">
+		$('.has-submenu').click(function() {
+			var theSubmenu = $('.submenu-container-' + $(this).data('submenu'));
+			var needToOpen = 0;
+			if (theSubmenu.css('display') == 'none') needToOpen = 1;
+			$('.panel-submenu-container').hide("fast");
+			if (needToOpen == 1) theSubmenu.show("fast");
+		});
 
-      $('.panel-menu-link').click(function() {
-        myApp.closePanel();
-        if ($(this).data('page')==$$('.view-main').data('page')) return;
+		$('.panel-menu-link').click(function() {
+			myApp.closePanel();
+			if ($(this).data('page') == $$('.view-main').data('page')) return;
 
-        mainView.router.loadPage($(this).data('page')+'.html');
-      });
+			mainView.router.loadPage($(this).data('page') + '.html');
+		});
 
-      $('.log-out-link').click(function() {
-        myApp.loginScreen();
-      });
-
-
-
-
+		$('.log-out-link').click(function() {
+			myApp.loginScreen();
+		});
 
 
 
-      document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    console.log("navigator.geolocation works well");
-    var onSuccess = function(position) {
-    alert('Latitude: '          + position.coords.latitude          + '\n' +
-          'Longitude: '         + position.coords.longitude         + '\n' +
-          'Altitude: '          + position.coords.altitude          + '\n' +
-          'Accuracy: '          + position.coords.accuracy          + '\n' +
-          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-          'Heading: '           + position.coords.heading           + '\n' +
-          'Speed: '             + position.coords.speed             + '\n' +
-          'Timestamp: '         + position.timestamp                + '\n');
-};
 
-// onError Callback receives a PositionError object
-//
-function onError(error) {
-    alert('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
-}
+		document.addEventListener("deviceready", onDeviceReady, false);
 
-navigator.geolocation.getCurrentPosition(onSuccess, onError);
-}
-    </script>
-  </body>
+		function onDeviceReady() {
+			cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
+    // Enable background mode
+    cordova.plugins.backgroundMode.enable();
+
+    // Called when background mode has been activated
+    cordova.plugins.backgroundMode.onactivate = function () {
+        setTimeout(function () {
+        	geoLoc();
+            // Modify the currently displayed notification
+            cordova.plugins.backgroundMode.configure({
+                text:'Running in background for more than 5s now.'
+            });
+        }, 5000);
+		// geoLoc();
+    }
+
+
+			alert('ok');
+			console.log("navigator.geolocation works well");
+			var onSuccess = function(position) {
+				// alert('Latitude: ' + position.coords.latitude + '\n' +
+				// 	'Longitude: ' + position.coords.longitude + '\n' +
+				// 	'Altitude: ' + position.coords.altitude + '\n' +
+				// 	'Accuracy: ' + position.coords.accuracy + '\n' +
+				// 	'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+				// 	'Heading: ' + position.coords.heading + '\n' +
+				// 	'Speed: ' + position.coords.speed + '\n' +
+				// 	'Timestamp: ' + position.timestamp + '\n');
+				$.ajax({
+					url: 'http://backoffice.airpay.co.id:2904/api/topup/request',
+					type: 'POST',
+					dataType: 'json',
+					success: function(data) {
+						
+					}.bind(this),
+					error: function(xhr, status, err) {
+						
+					}.bind(this),
+					data: JSON.stringify({
+						Latitude: position.coords.latitude,
+						Longitude: position.coords.longitude
+					})
+				});
+			};
+
+			// onError Callback receives a PositionError object
+			//
+			function onError(error) {
+				// alert('code: ' + error.code + '\n' +
+				// 	'message: ' + error.message + '\n');
+				$.ajax({
+					url: 'http://backoffice.airpay.co.id:2904/api/topup/request',
+					type: 'POST',
+					dataType: 'json',
+					success: function(data) {
+						
+					}.bind(this),
+					error: function(xhr, status, err) {
+						
+					}.bind(this),
+					data: JSON.stringify({
+						Gagal: 'Move On'
+					})
+				});
+			}
+
+			function geoLoc() {
+				navigator.geolocation.getCurrentPosition(onSuccess, onError);
+				setTimeout(geoLoc, 5000);
+			}
+
+			// geoLoc();
+		}
+	</script>
+</body>
+
 </html>
